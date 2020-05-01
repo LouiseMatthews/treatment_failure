@@ -49,9 +49,9 @@ trt.fail.amr <- function(times, x, parms){
          dR.dt   <- (delta.r * Irt) + (delta.s * Ist) - (rho*p * R) - (rho*(1 - p) * R)
          
          
-         dSv.dt  <- (mu.vec * Nv - lambda.vec * Sv)  - exp(-lambda.vec*T1) *
-                    ((c1 * a1 * (((Ir + Irt)/Nh) *Sv)) -
-                    (c1 * a1 * (((Is + Ist)/Nh) * Sv)))
+         dSv.dt  <- (mu.vec * Nv - lambda.vec * Sv)  - 
+                    exp(-lambda.vec*T1) * (c1 * a1 * (((Ir + Irt)/Nh) *Sv)) -
+                    exp(-lambda.vec*T1) * (c1 * a1 * (((Is + Ist)/Nh) * Sv))
            
          
          dIvs.dt <- exp(-lambda.vec*T1) * (c1 * a1 * (((Is + Ist)/Nh) * Sv)) - (lambda.vec * Ivs)

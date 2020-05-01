@@ -17,7 +17,7 @@ x <- rep(0, 10) # set up vector of initial conditions
 p <- 0 # proportion of herd receiving prophylaxis
 
 herd.size <- 50           # initial number of cattle
-initial.infection <- 1    # initial number of drug sensitive infections
+initial.infection <- 0    # initial number of drug sensitive infections
 vector.pop <- 5000        # initial population of vectors
 
 # fill initial vector with relevant data
