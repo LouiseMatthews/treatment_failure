@@ -21,10 +21,20 @@ initial.infection <- 0    # initial number of drug sensitive infections
 vector.pop <- 5000        # initial population of vectors
 
 # fill initial vector with relevant data
-x[1] <- herd.size * p 
-x[2] <- herd.size * (1 -p) - initial.infection
-x[4] <- initial.infection 
-x[8] <- vector.pop
+Sp_init  = herd.size * p  # Susceptible host with prophylaxis
+Sn_init  = herd.size * (1 -p) - initial.infection  # Susceptible host with no prophylaxis
+Ir_init  = 0  # Infected host with resistant strain
+Is_init  = initial.infection   # Infected host with sensitive strain
+Irt_init = 0  # Infected host with resistant strain w/ treatment
+Ist_init = 0  # Infected host with sensitive strain w/ treatment
+R_init  = 0  # Recovered host
+Sv_init  = vector.pop  # Susceptible vector
+Ivs_init = 0  # Infected vector with sensitive strain
+Ivr_init = 0
+x <- c(Sp = Sp_init, Sn = Sn_init, Ir = Ir_init, Is = Is_init, 
+                 Irt = Irt_init, Ist = Ist_init, R = R_init, Sv = Sv_init,
+                 Ivs = Ivs_init, Ivr = Ivr_init)
+
 
 # calculate betas
 a <- 0.15/4
@@ -64,13 +74,13 @@ tail(out)
 
 par(mfrow=c(1,2))
 
-plot(out[,3] ~ out[,1],
+plot(out$Sn ~ out$time,
      type = "l", col = "blue",
      ylim = c(0,55))
-lines(out[,5] ~ out[,1], col = "red")
+lines(out$Is ~ out$time, col = "red")
 
-plot((out[,9]) ~ out[,1],
+plot(out$Sv ~ out$time,
      type = "l", col = "blue",
      ylim = c(0,10000))
-lines(log(out[,10]) ~ out[,1], col = "red")
+lines(log(out$Ivs) ~ out$time, col = "red")
 
